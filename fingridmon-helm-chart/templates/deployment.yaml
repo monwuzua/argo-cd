@@ -24,8 +24,4 @@ spec:
         - name: {{ .Values.imagePullSecrets }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       
