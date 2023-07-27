@@ -20,8 +20,8 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-      #imagePullSecrets: 
-        #- name: {{ .Values.imagePullSecrets }}
+      imagePullSecrets: 
+        - name: {{ .Values.imagePullSecrets }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       
