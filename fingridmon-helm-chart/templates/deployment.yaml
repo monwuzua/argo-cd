@@ -12,14 +12,12 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       containers:
         - name: {{ .Values.name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+      imagePullSecrets: 
+        - name: {{ .Values.imagePullSecrets }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
