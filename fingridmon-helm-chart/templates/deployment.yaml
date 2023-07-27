@@ -16,12 +16,12 @@ spec:
         - name: {{ .Values.name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-      imagePullSecrets: 
-        - name: {{ .Values.imagePullSecrets }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+      imagePullSecrets: 
+        - name: {{ .Values.imagePullSecrets }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
