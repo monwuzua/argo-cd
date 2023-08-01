@@ -22,3 +22,11 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: docker-secret-volume
+              mountPath: /mnt/docker-secret
+              readOnly: true
+      volumes:
+        - name: docker-secret-volume
+          secret:
+            secretName: docker-secret
