@@ -7,10 +7,13 @@ name: demo-app
 
 image:
   repository: mosesonwuzua/holyghost
-  pullPolicy: IfNotPresent
+  pullPolicy: always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.1.0"
   port: 8080
+
+imagePullSecrets:
+  name: docker-secret  
 
 service:
   type: ClusterIP
